@@ -1,0 +1,127 @@
+
+<!-- Meus-Pedidos.html -->
+<!-- Todos.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Início</title>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="senhac.css" />
+
+  <!-- script  -->
+  <script src="carrinho.js" defer></script>
+  <script src="senhac.js"></script> 
+  <script src="banco_pedidos.js"></script> 
+
+  <!-- Font‑Awesome para os ícones -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+  />
+</head>
+
+<body class="light-theme">
+  <div id="cartSidebar">
+    <div class="cart-header">
+      <h2>Seu Carrinho</h2>
+      <button id="closeCart" aria-label="Fechar carrinho">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-body">
+      <p>Seu carrinho está vazio.</p>
+    </div>
+  </div>
+
+  <div id="cartOverlay"></div>
+
+  <!-- :::::::::::::::::::::: CABEÇALHO :::::::::::::::::::::: -->
+  <header id="header" style="position: fixed; top: 0; width: 100%; z-index: 1000">
+    <nav>
+      <div class="menu-container">
+        <!-- logo -->
+        <div class="logo-nav">
+          <img src="senhacl.png" alt="Logo Senhac" />
+        </div>
+
+        <!-- barra de busca e ícones à direita -->
+        <div class="header-right">
+          <input type="text" placeholder="Buscar">
+          <button class="icon-button" title="Perfil" onclick="window.location.href='index2.php'">
+            <i class="fas fa-user"></i>
+          </button>
+          <button class="icon-button" id="openCart" title="Carrinho">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+        <!-- Botão hambúrguer (visível apenas no mobile) -->
+        <button class="menu-toggle icon-button" aria-label="Abrir menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- faixa inferior opcional -->
+  <div id="infoBar" class="info-bar menu-mobile" style="position: fixed; top: 76px; width: 100%; z-index: 1000">
+    <ul class="menu-center">
+      <li><a href="sobrenos.php">Início</a></li>
+      <li><a href="Bebidas.html">Bebidas</a></li>
+      <li><a href="Lanches.html">Lanches</a></li>
+      <li><a href="Doces.html">Doces</a></li>
+      <li><a href="Ofertas.html">Ofertas</a></li>
+      <li><a href="Todos.html">Todos os Itens</a></li>
+      <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+    </ul>
+  </div>
+
+  <main style="padding-top: 116px; text-align: center;">
+    <h1>🧾 Meus Pedidos</h1>
+    <ul id="listaPedidos" style="list-style: none; padding: 0; max-width: 600px; margin: 2rem auto;">
+      <!-- Pedidos serão inseridos via JavaScript -->
+    </ul>
+  </main>
+
+  
+<footer class="text-center text-sm py-4 bg-slate-900 text-white"
+style="position: fixed; bottom: 0; width: 100%;">
+  ©2025 Senac. Todos os direitos reservados.
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const lista = document.getElementById('listaPedidos');
+    const pedidos = JSON.parse(localStorage.getItem('meusPedidos')) || [];
+
+    if (pedidos.length === 0) {
+      lista.innerHTML = '<li>Nenhum pedido encontrado.</li>';
+      return;
+    }
+
+    pedidos.reverse().forEach(pedido => {
+      const li = document.createElement('li');
+      li.style.border = '1px solid #ccc';
+      li.style.borderRadius = '10px';
+      li.style.padding = '15px';
+      li.style.marginBottom = '15px';
+      li.style.backgroundColor = '#f9f9f9';
+      li.style.textAlign = 'left';
+
+      li.innerHTML = `
+        <strong>Código:</strong> ${pedido.codigo}<br>
+        <strong>Data:</strong> ${pedido.data || 'Data não disponível'}<br>
+        <strong>Itens:</strong> <ul style="padding-left: 20px;">${pedido.itens.map(item => `<li>${item}</li>`).join('')}</ul>
+        <strong>Total:</strong> R$ ${pedido.total}<br>
+        <strong>Retirada:</strong> ${pedido.retirada || '-'}<br>
+        <strong>Pagamento:</strong> ${pedido.pagamento || '-'}
+      `;
+      lista.appendChild(li);
+    });
+  });
+</script>
+</body>
+</html>

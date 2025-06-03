@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nós</title>
+  <link rel="stylesheet" href="sobrenos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+<body class="light-theme">
+  <div id="cartSidebar">
+    <div class="cart-header">
+      <h2>Seu Carrinho</h2>
+      <button id="closeCart" aria-label="Fechar carrinho">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-body">
+      <p>Seu carrinho está vazio.</p>
+    </div>
+  </div>
+
+  <div id="cartOverlay"></div>
+
+  <header class="top-bar" id="header">
+    <img src="senhacl.png" alt="Logo Senhac" />
+    <div class="search-user">
+      <input type="text" placeholder="Buscar" />
+      <button class="icon-button" title="Perfil" onclick="window.location.href='index2.php'"><i class="fas fa-user"></i></button>
+      <button class="icon-button" id="openCart" title="Carrinho"><i class="fas fa-shopping-cart"></i></button>
+    </div>
+  </header>
+
+  <div class="faixa-aviso" id="infoBar">
+     O Senhac é a plataforma que facilita o seu pedido diretamente da máquina de alimentos da instituição. 
+  </div>
+
+  <div id="page-wrapper">
+    <section class="banner">
+      <img src="banner2.png" alt="Banner" />
+      <div class="banner-overlay">
+        <h2>Senhac.<br />Rápido, prático e seguro.</h2>
+        <p>Você pode escolher entre lanches, bebidas e outros produtos!</p>
+      </div>
+    </section>
+
+    <main class="categorias" id="mainContent">
+      <a href="ofertas.html" class="categoria">
+        <img src="ofertas.png" alt="Ofertas" />
+        <p>Ofertas do Dia</p>
+      </a>
+      <a href="Bebidas.html" class="categoria">
+        <img src="bebidas.png" alt="Bebidas" />
+        <p>Bebidas</p>
+      </a>
+      <a href="Doces.html" class="categoria">
+        <img src="doces.png" alt="Doces" />
+        <p>Doces</p>
+      </a>
+      <a href="Lanches.html" class="categoria">
+        <img src="lanches.png" alt="Lanches" />
+        <p>Lanches</p>
+      </a>
+      <a href="Todos.html" class="categoria">
+        <img src="todositens.png" alt="Todos os Itens" />
+        <p>Todos os Itens</p>
+      </a>
+    </main>
+
+    <div class="app-download">
+      <a href="https://play.google.com/store/apps/details?id=br.sp.senac&hl=pt_BR" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Disponível no Google Play" class="store-badge" />
+      </a>
+      <a href="https://apps.apple.com/br/app/senac-s%C3%A3o-paulo/id1454496991" target="_blank">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Disponível na App Store" class="store-badge" />
+      </a>
+    </div>
+  </div>
+
+  <footer class="rodape" id="footer">
+    ©2025 Senac. Todos os direitos reservados.
+  </footer>
+
+  <script>
+    const openCartBtn = document.getElementById("openCart");
+    const closeCartBtn = document.getElementById("closeCart");
+    const cartSidebar = document.getElementById("cartSidebar");
+    const cartOverlay = document.getElementById("cartOverlay");
+
+    openCartBtn?.addEventListener("click", () => {
+      cartSidebar.classList.add("active");
+      cartOverlay.classList.add("active");
+    });
+
+    closeCartBtn?.addEventListener("click", () => {
+      cartSidebar.classList.remove("active");
+      cartOverlay.classList.remove("active");
+    });
+
+    cartOverlay?.addEventListener("click", () => {
+      cartSidebar.classList.remove("active");
+      cartOverlay.classList.remove("active");
+    });
+
+    function ajustarEspacamento() {
+      const header = document.getElementById("header");
+      const infoBar = document.getElementById("infoBar");
+      const footer = document.getElementById("footer");
+      const pageWrapper = document.getElementById("page-wrapper");
+
+      const alturaHeader = header?.offsetHeight || 0;
+      const alturaInfoBar = infoBar?.offsetHeight || 0;
+      const alturaFooter = footer?.offsetHeight || 0;
+
+      if (infoBar) {
+        infoBar.style.top = `${alturaHeader}px`;
+      }
+
+      if (pageWrapper) {
+        pageWrapper.style.paddingTop = `${alturaHeader + alturaInfoBar}px`;
+        pageWrapper.style.paddingBottom = `${alturaFooter}px`;
+      }
+    }
+
+    window.addEventListener("load", ajustarEspacamento);
+    window.addEventListener("resize", ajustarEspacamento);
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- script  -->
+    <script src="js/carrinho.js" defer></script>
+    <script src="js/senhac.js"></script> 
+    <script src="js/banco_pedidos.js"></script> 
+  <meta charset="UTF-8">
+  <title>Histórico de Pedidos</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9fafb; padding: 2rem; color: #1f2937; }
+    .pedido { background: white; padding: 1.5rem; margin-bottom: 1rem; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    h2 { margin-top: 0; color: #0f172a; }
+    .botao-voltar {
+      display: inline-block;
+      margin-top: 2rem;
+      background-color: #fb923c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+    .botao-voltar:hover {
+      background-color: #f97316;
+    }
+  </style>
+</head>
+<body>
+  <h1>Histórico de Pedidos</h1>
+  <div id="historicoContainer">Carregando...</div>
+  <a class="botao-voltar" href="Todos.html">Voltar à loja</a>
+
+  <script>
+    const historico = JSON.parse(localStorage.getItem('historicoPedidos')) || [];
+    const container = document.getElementById('historicoContainer');
+
+    if (historico.length === 0) {
+      container.innerHTML = '<p>Você ainda não fez nenhum pedido.</p>';
+    } else {
+      container.innerHTML = historico.map(p => `
+        <div class="pedido">
+          <h2>Pedido ${p.id}</h2>
+          <p><strong>Data:</strong> ${p.data}</p>
+          <p><strong>Forma de Pagamento:</strong> ${p.pagamento}</p>
+          <p><strong>Período de Retirada:</strong> ${p.retirada}</p>
+          <p><strong>Total:</strong> R$ ${p.total.toFixed(2)}</p>
+          <ul>
+            ${p.itens.map(i => `<li>${i.nome} - ${i.quantidade}x R$ ${i.valorUnitario.toFixed(2)} = R$ ${i.total.toFixed(2)}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+  </script>
+</body>
+</html>

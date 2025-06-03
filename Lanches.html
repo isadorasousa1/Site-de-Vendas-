@@ -1,0 +1,155 @@
+<!-- Lanches.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanches</title>
+  <script src="carrinho.js" defer></script>
+  <script src="senhac.js"></script> 
+  <script src="banco_pedidos.js"></script>
+
+  <!-- CSS externo -->
+  <link rel="stylesheet" href="senhac.css">
+
+  <!-- Font‑Awesome para os ícones -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body class="light-theme">
+
+  <div id="cartSidebar">
+    <div class="cart-header">
+      <h2>Seu Carrinho</h2>
+      <button id="closeCart" aria-label="Fechar carrinho">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-body">
+      <p>Seu carrinho está vazio.</p>
+    </div>
+  </div>
+
+  <div id="cartOverlay"></div>
+
+
+<!-- :::::::::::::::::::::: CABEÇALHO :::::::::::::::::::::: -->
+<header id="header" style="position: fixed; top: 0; width: 100%; z-index: 1000">
+  <nav>
+    <div class="menu-container">
+
+      <!-- logo -->
+      <div class="logo-nav">
+        <img src="senhacl.png" alt="Logo Senhac">
+      </div>
+
+      <!-- barra de busca e ícones à direita -->
+      <div class="header-right">
+        <input type="text" placeholder="Buscar">
+        <button class="icon-button" title="Perfil" onclick="window.location.href='index2.php'">
+          <i class="fas fa-user"></i>
+        </button>
+        <button class="icon-button" id="openCart" title="Carrinho">
+          <i class="fas fa-shopping-cart"></i>
+        </button>
+      </div>
+      <!-- Botão hambúrguer (visível apenas no mobile) -->
+        <button class="menu-toggle icon-button" aria-label="Abrir menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+  </nav>
+</header>
+
+<!-- faixa inferior opcional -->
+<div id="infoBar" class="info-bar" style="position: fixed; top: 76px; width: 100%; z-index: 1000">
+  <ul class="menu-center">
+    <li><a href="sobrenos.php">Início</a></li>
+    <li><a href="Bebidas.html">Bebidas</a></li>
+    <li><a href="Lanches.html">Lanches</a></li>
+    <li><a href="Doces.html">Doces</a></li>
+    <li><a href="Ofertas.html">Ofertas</a></li>
+    <li><a href="Todos.html">Todos os Itens</a></li>
+    <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+  </ul>
+</div> 
+
+<div id="side-menu" class="side-menu">
+  <div id="toggle-button" class="toggle-button" onclick="toggleMenu()">
+  <span id="location-text">Sua Localização</span>
+  
+  <span id="arrow"><i class="fas fa-chevron-left"></i></span>
+
+<!-- ::::::::::::::::::::::  PRODUTOS  :::::::::::::::::::::: -->
+<main id="page-wrapper" class="container" style="padding-top: 116px;">
+
+<article class="product">
+  <div class="product-image-container">
+    <img src="san.jpg" alt="Lanche Pão de Forma Presunto e Queijo" class="product-img active" id="img1-1">
+    <img src="tabela.png" alt="Tabela Nutricional" class="product-img" id="img1-2">
+    <div class="image-switcher">
+      <span class="dot active" onclick="switchImage(1, this)"></span>
+      <span class="dot" onclick="switchImage(2, this)"></span>
+    </div>
+  </div>
+  <h3>Lanche Pão de Forma Presunto e Queijo</h3>
+  <p>R$ 3,00</p>
+  <button>Adicionar ao carrinho</button>
+</article>
+
+<article class="product">
+  <div class="product-image-container">
+    <img src="lanche_de_frango-removebg-preview.png" alt="Lanche Pão de Forma Frango" class="product-img active" id="img1-1">
+    <img src="tabela.png" alt="Tabela Nutricional" class="product-img" id="img1-2">
+    <div class="image-switcher">
+      <span class="dot active" onclick="switchImage(1, this)"></span>
+      <span class="dot" onclick="switchImage(2, this)"></span>
+    </div>
+  </div>
+  <h3>Lanche Pão de Forma Frango</h3>
+  <p>R$ 3,00</p>
+  <button>Adicionar ao carrinho</button>
+</article>
+ 
+<article class="product">
+  <div class="product-image-container">
+    <img src="lanche_de_salame_2-removebg-preview.png" alt="Lanche Pão Ciabatta Salame" class="product-img active" id="img1-1">
+    <img src="tabela.png" alt="Tabela Nutricional" class="product-img" id="img1-2">
+    <div class="image-switcher">
+      <span class="dot active" onclick="switchImage(1, this)"></span>
+      <span class="dot" onclick="switchImage(2, this)"></span>
+    </div>
+  </div>
+  <h3>Lanche Pão Ciabatta Salame</h3>
+  <p>R$ 3,00</p>
+  <button>Adicionar ao carrinho</button>
+</article>
+  
+<article class="product">
+  <div class="product-image-container">
+    <img src="paodog.png" alt="Lanche Pão de Hot Dog" class="product-img active" id="img1-1">
+    <img src="tabela.png" alt="Tabela Nutricional" class="product-img" id="img1-2">
+    <div class="image-switcher">
+      <span class="dot active" onclick="switchImage(1, this)"></span>
+      <span class="dot" onclick="switchImage(2, this)"></span>
+    </div>
+  </div>
+  <h3>Lanche Pão de Hot Dog</h3>
+  <p>R$ 3,00</p>
+  <button>Adicionar ao carrinho</button>
+</article>
+  
+  </main>
+
+ 
+<footer
+  id="footer" class="text-center text-sm py-4 bg-slate-900 text-white" style="position: fixed; bottom: 0; width: 100%">
+  ©2025 Senac. Todos os direitos reservados.
+  </footer>
+  
+  <script src="senhac.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,199 @@
+input,
+textarea,
+select,
+button {
+all: unset;
+box-sizing: border-box;
+font: inherit;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+font-size: 16px;
+}
+
+select,
+button {
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: none;
+cursor: pointer;
+}
+
+body{
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0;
+height: 100vh;
+background: #fff;
+}
+
+.login-container {
+width: 90%;
+max-width: 350px;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+padding: 30px 25px;
+text-align: center;
+font-family: "Mukta", sans-serif;
+background-color: #fff;
+border-radius:10px ;
+}
+
+.logo {
+align-items: center;
+display: block;
+margin: 0 auto 20px;
+}
+
+.form-group{
+display: flex;
+align-items: center;
+max-width: 300px;
+padding: 12px;
+padding-left: 30px;
+border: none;
+background: #fff;
+margin: 20px;
+border-radius: 4px;
+box-shadow: 2px 2px 7px 0 rgb(0, 0, 0, 0.1);
+outline: none;
+color: dimgray;
+}
+.form-group i {
+margin-right: 10px;
+color: #00154c;
+font-size: 16px;
+}
+
+.form-group input {
+border: none;
+outline: none;
+width: 100%;
+font-size: 1rem;
+color: dimgray;
+}
+
+.btn {
+width: 170px;
+height: 40px;
+margin-top: 10px;
+margin-bottom: 10px;
+background: linear-gradient(to top, #00154c,  #23487f);
+color: white;
+border-radius: 20px;
+border: none;
+outline: none;
+cursor: pointer;
+position: relative;
+
+overflow: hidden;
+}
+
+.btn span {
+font-size: 12px;
+text-transform: uppercase;
+letter-spacing: 1px;
+transition: top 0.5s;
+}
+
+.btn-text-one {
+position: absolute;
+width: 100%;
+top: 50%;
+left: 0;
+transform: translateY(-50%);
+}
+
+.btn-text-two {
+position: absolute;
+width: 100%;
+top: 150%;
+left: 0;
+transform: translateY(-50%);
+}
+
+.btn:hover .btn-text-one {
+top: -100%;
+}
+
+.btn:hover .btn-text-two {
+top: 50%;
+}
+
+.text-usuario{
+text-align: center;
+color:#22467c;
+text-decoration: none;
+font-family: "Mukta", sans-serif;
+font-weight: 400;
+font-size:1rem;
+}
+
+.text-usuario:hover{
+color: #00154c;
+}
+
+.centralizado {
+display: flex;
+margin: 0 auto;
+width: 100%;
+align-items: center;
+justify-content:center;
+margin-top: 50px;
+}
+
+@media (max-width: 480px) {
+.login-container {
+padding: 20px 15px;
+width: 95%;
+}
+
+.form-group {
+max-width: 100%;
+}
+}
+
+@media (max-width: 768px) {
+.centralizado,
+.redefinir {
+flex-direction: column;
+margin: 0 20px;
+width: 100%;
+}
+
+.login-container{
+width: 100%;
+height: auto;
+padding: 20px;
+box-sizing: border-box;
+}
+
+.form-group {
+max-width: 100%;
+margin: 10px auto;
+}
+
+.logo {
+width: 150px;
+margin-bottom: 15px;
+}
+
+.btn {
+width: 100%;
+max-width: 170px;
+}
+}
+
+@media (min-width: 1024px) {
+.login-container {
+max-width: 400px;
+}
+}

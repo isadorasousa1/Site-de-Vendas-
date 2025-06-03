@@ -1,0 +1,96 @@
+<!-- Todos.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pedido Confirmado</title>
+
+     <!-- script  -->
+  <script src="carrinho.js" defer></script>
+  <script src="senhac.js"></script> 
+  <script src="banco_pedidos.js"></script> 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="senhac.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Scripts -->
+  <script src="carrinho.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <nav>
+      <div class="menu-container">
+        <div class="logo-nav">
+          <img src="senhacl.png" alt="Logo Senhac">
+        </div>
+        <div class="header-right">
+          <div class="search-wrapper">
+            <input type="text" placeholder="O que você está procurando?">
+          </div>
+          <button class="icon-btn"><i class="fa-solid fa-circle-user"></i></button>
+          <button class="icon-btn" id="openCart">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cartTotalValue" style="color: white;">Total: R$ 0,00</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="info-bar">
+    <ul class="menu-center">
+      <li><a href="Sobrenos.html">Início</a></li>
+      <li><a href="Bebidas.html">Bebidas</a></li>
+      <li><a href="Lanches.html">Lanches</a></li>
+      <li><a href="Doces.html">Doces</a></li>
+      <li><a href="Ofertas.html">Ofertas</a></li>
+      <li><a href="Todos.html">Todos os Itens</a></li>
+      <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+    </ul>
+  </div>
+
+  <!-- Conteúdo do pedido -->
+  <div class="pedido-box">
+    <h1>Pedido Confirmado!</h1>
+    <div id="pedidoResumo">Acesse meus pedidos.</div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="text-center text-sm py-4 bg-slate-900 text-white" style="position: fixed; bottom: 0; width: 100%;">
+    ©2025 Senac. Todos os direitos reservados.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const pedido = JSON.parse(localStorage.getItem('pedidoFinalizado'));
+    const container = document.getElementById('pedidoResumo');
+
+    if (pedido) {
+      container.innerHTML = `
+        <p><strong>ID do Pedido:</strong> ${pedido.id}</p>
+        <p><strong>Data:</strong> ${pedido.data}</p>
+        <p><strong>Forma de Pagamento:</strong> ${pedido.pagamento}</p>
+        <p><strong>Período de Retirada:</strong> ${pedido.retirada}</p>
+        <p><strong>Itens:</strong></p>
+        <ul>
+          ${pedido.itens.map(i => `<li>${i.nome} - ${i.quantidade}x R$ ${i.valorUnitario.toFixed(2)} = R$ ${i.total.toFixed(2)}</li>`).join('')}
+        </ul>
+        <p><strong>Total:</strong> R$ ${pedido.total.toFixed(2)}</p>
+      `;
+      localStorage.removeItem('pedidoFinalizado'); // limpa após exibir
+    } else {
+      container.textContent = 'Acesse meus pedidos.';
+    }
+
+    
+  </script>
+</body>
+</html>
